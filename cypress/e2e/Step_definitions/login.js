@@ -37,4 +37,6 @@ Given("eu insiro o usuário válido no campo de username",() => {
     cy.url().should("include", "/inventory.html");
   });
 
-  
+  Given("eu insiro o usuário inválido no campo de username",() => {
+    cy.get('[data-test="username"]').type(credenciais.usernameInvalido);
+  });
