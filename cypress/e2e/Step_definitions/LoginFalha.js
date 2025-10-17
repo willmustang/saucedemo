@@ -16,6 +16,7 @@ Then('devo ver a mensagem de erro: "Epic sadface: Username is required" é exibi
     "Epic sadface: Username is required"
   );
 });
+
 //@LoginSenhaObrigatória
 Given("que insiro username valido no campo login", () => {
   cy.get('[data-test="username"]').type("standard_user");

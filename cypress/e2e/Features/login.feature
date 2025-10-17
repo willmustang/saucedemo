@@ -16,49 +16,37 @@ Funcionalidade: Login no site
     Então eu devo ser redirecionado para a página do products
 
   @CampoUsernameVisivel
-  Cenário: Campo "Username" visível e habilitado
+  Cenário: Verificar se o campo "Username" está visível e habilitado.
     Dado que clico no campo username
     Então campo aparece na tela e aceita digitação
 
   @CampoPasswordVisivel
-  Cenário: Campo "Password" visível e habilitado
+  Cenário: Verificar se o campo "Password" está visível e habilitado.
     Dado que clico no campo password
     Então campo aparece na tela e aceita digitação
 
   @BotãoLoginVisivel
-  Cenário: Botão visível na tela
+  Cenário: Verificar se o botão de login está visível na tela.
     Dado que verifico se o botão login é renderizado na tela
-    Então Botão Login aparece corretamente na interface
+    Então botão Login aparece corretamente na interface
 
   @BotãoLoginClicável
-  Cenário: Clique no botão com mouse
+  Cenário: Validar o clique no botão de login com o mouse.
     Dado que clico no botão login
     Então evento de clique é disparado corretamente
 
   @PressionarEnterNoFormulário
-  Cenário: Pressionar Enter com foco nos campos
+  Cenário: Validar o acionamento do botão de login ao pressionar Enter com foco nos campos.
     Dado que preencho o campo Username        
     Quando preencho o campo Password
     E pressiono enter ainda nos campos do formulário
-    Então devo ser redirecionado para a página do products
+    Então devo ser redirecionado para a página do produtos
 
-  @FocoViaTabulaçãoUsername
-  Cenário: Foco via teclado (Tab) Username
+  @FocoViaTabulaçãoFormulário
+  Cenário: Verificar se o foco pode ser alternado entre os campos via tecla Tab.
     Dado que seleciono o body da página
-    Quando e navego na página com a tecla tab até o campo username
-    Então devo conseguir digitar no campo username
-
-  @FocoViaTabulaçãoPassword@
-  Cenário: Foco via teclado (Tab) Password
-    Dado que seleciono o body da página
-    Quando navego na página com a tecla tab até o campo password
-    Então devo conseguir digitar no campo password
-
-  @FocoViaTabulaçãoLogin
-  Cenário: Foco via teclado (Tab) botão Login
-    Dado que seleciono o body da página
-    Quando navego na página com a tecla tab até o botão login
-    Então devo conseguir clicar no botão login
+    Quando e navego na página com a tecla tab entre os campos username, password e botão login
+    Então o foco deve alternar corretamente entre os campos
 
   @EstiloVisualBotãoLogin
   Cenário: Estilo visual (CSS)

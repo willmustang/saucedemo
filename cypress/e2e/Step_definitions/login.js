@@ -22,6 +22,7 @@ Given("que eu acesso a página inicial do site",() => {
   Then('eu devo ver o logotipo da empresa "Swag Labs" no topo da página', () => {
   cy.get(".login_logo").should("have.text", "Swag Labs");
 });
+
 //@LoginSucesso
 Given("eu insiro o usuário válido no campo de username",() => {
     cy.get('[data-test="username"]').type(credenciais.username);
@@ -35,6 +36,7 @@ Given("eu insiro o usuário válido no campo de username",() => {
   Then("eu devo ser redirecionado para a página do products",() => {
     cy.url().should("include", "/inventory.html");
   });
+
 //@CampoUsernameVisivel
 Given("que clico no campo username",() => {
     cy.get('[data-test="username"]').click();
@@ -46,6 +48,7 @@ Given("que clico no campo username",() => {
     .type("standard_user")
     .should("have.value", "standard_user");
   });
+
 //@CampoPasswordVisivel
 Given("que clico no campo password",() => {
     cy.get('[data-test="password"]').click();
@@ -57,16 +60,18 @@ Given("que clico no campo password",() => {
     .type("secret_sauce")
     .should("have.value", "secret_sauce");
   });
+
 //@BotãoLoginVisivel
 Given("que verifico se o botão login é renderizado na tela",() => {
     cy.get('[data-test="login-button"]').should("be.visible");
   });
-  Then("Botão Login aparece corretamente na interface",() => {
+  Then("botão Login aparece corretamente na interface",() => {
     cy.get('[data-test="login-button"]')
     .should("be.visible")
     .and("not.be.disabled")
     .and("have.value", "Login");
   });
+
 //@BotãoLoginClicável
 Given("que clico no botão login",() => {
     cy.get('[data-test="login-button"]').click();
@@ -74,6 +79,7 @@ Given("que clico no botão login",() => {
   Then("evento de clique é disparado corretamente",() => {
     cy.get('[data-test="login-button"]').click().should("be.enabled");
   });
+
 //@PressionarEnterNoFormulário
 Given("que preencho o campo Username",() => {
     cy.get('[data-test="username"]').type(credenciais.username);
@@ -84,52 +90,32 @@ Given("que preencho o campo Username",() => {
   When("pressiono enter ainda nos campos do formulário",() => {
     cy.get('[data-test="password"]').type("{enter}");
   });
-  Then("devo ser redirecionado para a página do products",() => {
+  Then("devo ser redirecionado para a página do produtos",() => {
     cy.url().should("include", "/inventory.html");
   });
-//@FocoViaTabulaçãoUsername
+  
+//@FocoViaTabulaçãoFormulário
 Given("que seleciono o body da página",() => {
     cy.get("body").focus();
 });
-  When("e navego na página com a tecla tab até o campo username",() => {
+  When("e navego na página com a tecla tab entre os campos username, password e botão login",() => {
     cy.get("body").tab();
     cy.get('[data-test="username"]')
     .should("have.focus")
-    .should("have.id", "user-name");
-  });
-  Then("devo conseguir digitar no campo username",() => {
-    cy.get('[data-test="username"]')
-    .type("standard_user")
-    .should("have.value", "standard_user");
-  });
-//@FocoViaTabulaçãoPassword
-Given("que seleciono o body da página",() => {
-    cy.get("body").focus();
-});
-  When("navego na página com a tecla tab até o campo password",() => {
-    cy.get("body").tab().tab();
+    .should("have.id", "user-name") // Verifica se o campo username está em foco
+    .tab();
     cy.get('[data-test="password"]')
     .should("have.focus")
-    .should("have.id", "password");
-  });
-  Then("devo conseguir digitar no campo password",() => {
-    cy.get('[data-test="password"]')
-    .type("secret_sauce")
-    .should("have.value", "secret_sauce");
-  });
-//@FocoViaTabulaçãoLogin
-  Given("que seleciono o body da página",() => {
-    cy.get("body").focus();
-  });
-  When("navego na página com a tecla tab até o botão login",() => {
-    cy.get("body").tab().tab().tab();
+    .should("have.id", "password") // Verifica se o campo password está em foco
+    .tab();
     cy.get('[data-test="login-button"]')
     .should("have.focus")
-    .should("have.id", "login-button");
+    .should("have.id", "login-button"); // Verifica se o botão login está em foco
   });
-  Then("devo conseguir clicar no botão login",() => {
-    cy.get('[data-test="login-button"]').click();
+  Then("o foco deve alternar corretamente entre os campos",() => {
+    cy.get('[data-test="login-button"]').tab().should("have.focus");
   });
+
   //@EstiloVisualBotãoLogin
   Given("que valido que a fonte e cor do botão login estão de acordo com especificação",() => {
     cy.get('[data-test="login-button"]').should("be.visible");
